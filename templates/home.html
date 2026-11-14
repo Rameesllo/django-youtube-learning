@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% static 'calc/image' as baseUrl %}
+
+<h1>Explore Destinations</h1>
+
+{% for dest in destination %}
+
+    <h2>{{ forloop.counter }}. {{ dest.name }}</h2>
+
+    <img src="{{ baseUrl }}/{{ dest.img }}" width="200">
+
+    <p>{{ dest.desc }}</p>
+
+    <p>Price: ₹{{ dest.price }}</p>
+
+    {% if dest.price < 6000 %}
+        <p>Budget Friendly!</p>
+     {% else %}
+        <p>Premium Destination</p>
+    {% endif %}
+
+{% empty %}
+
+    <p>No destinations available.</p>
+
+{% endfor %}
+
+{% endblock %}
